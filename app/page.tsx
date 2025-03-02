@@ -76,6 +76,9 @@ export default function Home() {
       y: "10vh",
       scale: 0.5,
       duration: 1,
+      onStart: () => {
+        bounceAnimation.kill(); // Stop bouncing animation
+      }
     });
 
   }, []);
