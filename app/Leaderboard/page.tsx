@@ -30,31 +30,55 @@ const Page = () => {
   const [selectedMonth, setSelectedMonth] = useState<string>('');
 
   useEffect(() => {
-    const fetchAllLeaderboards = async () => {
+    const fetchAllTournaments = async () => {
       try {
-        const response = await axios.get<{ success: boolean; data: TournamentData }>(
-          'https://metapong-contract-7tit.onrender.com/api/leaderboard/1'
+        const currentTournamentResponse = await axios.get(
+          "https://metapong-contract-7tit.onrender.com/api/tournament/current"
         );
-
-        const tournamentData = response.data.data;
-        const month = getMonthName(tournamentData.startTime);
-        setTournaments([tournamentData]); // Assuming only one tournament for now
-        setSelectedMonth(month);
-
-        // Set initial players based on current month
-        setPlayers(
-          tournamentData.leaderboard.filter(
-            p => p.player !== "0x0000000000000000000000000000000000000000"
-          )
-        );
+    
+        const currentTournamentId = currentTournamentResponse.data.data.tournamentId;
+    
+        // Fetch all tournaments from 1 to currentTournamentId
+        const tournamentPromises = [];
+        for (let id = 1; id <= currentTournamentId; id++) {
+          tournamentPromises.push(
+            axios.get<{ success: boolean; data: TournamentData }>(
+              `https://metapong-contract-7tit.onrender.com/api/leaderboard/${id}`
+            )
+          );
+        }
+    
+        // Wait for all requests to resolve
+        const responses = await Promise.all(tournamentPromises);
+    
+        // Process fetched tournament data
+        const allTournaments = responses.map((response) => {
+          const tournamentData = response.data.data;
+          return {
+            ...tournamentData,
+            month: getMonthName(tournamentData.startTime),
+            leaderboard: tournamentData.leaderboard.filter(
+              (p) => p.player !== "0x0000000000000000000000000000000000000000"
+            ),
+          };
+        });
+    
+        // Sort tournaments by start time (newest first)
+        allTournaments.sort((a, b) => b.startTime - a.startTime);
+    
+        // Set state with all tournaments
+        setTournaments(allTournaments);
+        setSelectedMonth(allTournaments[0]?.month || ""); // Default to latest tournament
+        setPlayers(allTournaments[0]?.leaderboard || []);
       } catch (err) {
-        setError('Failed to fetch leaderboard');
+        setError("Failed to fetch tournaments");
       } finally {
         setLoading(false);
       }
     };
+    
 
-    fetchAllLeaderboards();
+    fetchAllTournaments();
   }, []);
 
   const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
