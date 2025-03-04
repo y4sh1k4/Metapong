@@ -168,14 +168,14 @@ export default function Home() {
                 </div>
               </Cards>
               <Cards name="THROW THE BALL" content="Play & earn rewards in a futuristic blockchain-powered Pong game!">
-            {/* Only show the ball Canvas for mobile screens (less than 768px) */}
-            {isMobile && (
-              <div className="h-36">
-                <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
-                  <Scene />
-                </Canvas>
-              </div>
-            )}
+                {/* Only show the ball Canvas for mobile screens (less than 768px) */}
+                {isMobile && (
+                  <div className="h-36">
+                    <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+                      <Scene />
+                    </Canvas>
+                  </div>
+                )}
           </Cards>
             </div>
           </div>
