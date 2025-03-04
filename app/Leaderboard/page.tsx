@@ -32,7 +32,7 @@ const Page = () => {
   useEffect(() => {
     const fetchAllLeaderboards = async () => {
       try {
-        const response = await axios.get<TournamentData>(
+        const response = await axios.get<{ success: boolean; data: TournamentData }>(
           'https://metapong-contract-7tit.onrender.com/api/leaderboard/1'
         );
 
