@@ -73,7 +73,7 @@ const Navbar = () => {
             <a href="#faq" className="block text-gray-300 hover:text-[#19bdbd] transition-colors py-2" onClick={() => setIsMenuOpen(false)}>
               FAQ
             </a>
-            <Link href={"https://meta-pong-eta.vercel.app/"} className="w-full flex justify-center">
+            <Link href={"https://meta-pong-iota.vercel.app"} className="w-full flex justify-center">
               <button onClick={() => setIsMenuOpen(false)} className="px-8 py-2 bg-gradient-to-r from-[#00FFFF] to-[#0088FF] rounded-md text-white hover:bg-opacity-80 transition-colors">
                 Play Now
               </button>

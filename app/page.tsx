@@ -127,7 +127,7 @@ export default function Home() {
               Join META PONG, the ultimate blockchain-powered airdrop game! Toss Pong Balls into the bucket, rack up points, and boost your rewards in the CrossFi (XFI) ecosystem. Are you ready to aim, throw, and claim your airdrop?
             </p>
             <div className='flex flex-col md:flex-row w-full gap-4 md:gap-5 items-center md:items-start'>
-              <Link href={"https://meta-pong-eta.vercel.app/"}>
+              <Link href={"https://meta-pong-iota.vercel.app/"}>
                 <button className="mt-4 md:mt-10 text-xl w-[12rem] h-[4rem] py-2 bg-gradient-to-r from-[#00FFFF] to-[#0088FF] rounded-lg text-[#0A0F1F] font-bold transition-all duration-300 ease-in-out
                   hover:bg-none hover:text-white hover:border-4 hover:border-[#00FFFF]" >
                   Play Now
