@@ -40,7 +40,7 @@ const Navbar = () => {
               <a href="#faq" className="text-gray-300 hover:text-[#19bdbd] transition-colors">
                 FAQ
               </a>
-              <Link href={"https://meta-pong-eta.vercel.app/"}>
+              <Link href={"https://meta-pong-iota.vercel.app"}>
                 <button className="px-4 py-2 bg-gradient-to-r from-[#00FFFF] to-[#0088FF] rounded-md text-white hover:bg-opacity-80 transition-colors">
                   Play Now
                 </button>
